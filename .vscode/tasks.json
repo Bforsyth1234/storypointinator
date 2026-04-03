@@ -4,10 +4,8 @@
     {
       "type": "shell",
       "label": "build-extension",
-      "command": "source ~/.nvm/nvm.sh && npm run compile",
-      "problemMatcher": [
-        "$tsc"
-      ],
+      "command": "source ~/.nvm/nvm.sh && node esbuild.js",
+      "problemMatcher": [],
       "group": "build",
       "isBackground": false,
       "presentation": {
