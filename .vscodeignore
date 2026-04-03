@@ -1,0 +1,6 @@
+webview-ui/src/**
+webview-ui/node_modules/**
+src/**
+.vscode/**
+node_modules/**
+out/**/*.map

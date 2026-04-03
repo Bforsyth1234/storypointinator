@@ -1,0 +1,116 @@
+{
+  "name": "storypointinator",
+  "displayName": "Storypointinator",
+  "description": "AI-powered story point estimation in your VS Code sidebar",
+  "version": "0.0.1",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onView:storypointinator.chatView"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "Storypointinator",
+      "properties": {
+        "storypointinator.anthropicApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your Anthropic API Key for Claude"
+        },
+        "storypointinator.model": {
+          "type": "string",
+          "default": "claude-sonnet-4-6",
+          "enum": [
+            "claude-sonnet-4-6",
+            "claude-opus-4-6",
+            "claude-haiku-4-5-20251001",
+            "claude-opus-4-5-20251101",
+            "claude-sonnet-4-5-20250929"
+          ],
+          "enumDescriptions": [
+            "Claude Sonnet 4.6 — Best balance of speed and quality (default)",
+            "Claude Opus 4.6 — Most capable, slower and more expensive",
+            "Claude Haiku 4.5 — Fastest and cheapest, less detailed",
+            "Claude Opus 4.5 — Previous gen, very capable",
+            "Claude Sonnet 4.5 — Previous gen, good balance"
+          ],
+          "description": "Which Claude model to use for estimation"
+        },
+        "storypointinator.mcpServers": {
+          "type": "object",
+          "default": {},
+          "description": "MCP servers to connect to for additional context. Each key is a server name. Value should have 'command' (string), 'args' (string[]), and optionally 'env' (object).",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "command": {
+                "type": "string",
+                "description": "The command to start the MCP server"
+              },
+              "args": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Arguments for the command"
+              },
+              "env": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Environment variables for the server process"
+              }
+            },
+            "required": [
+              "command"
+            ]
+          }
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "storypointinator",
+          "title": "Storypointinator",
+          "icon": "$(target)"
+        }
+      ]
+    },
+    "views": {
+      "storypointinator": [
+        {
+          "type": "webview",
+          "id": "storypointinator.chatView",
+          "name": "Storypointinator"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "build:webview": "cd webview-ui && npm run build",
+    "build": "npm run compile && npm run build:webview",
+    "package": "vsce package"
+  },
+  "dependencies": {
+    "@langchain/anthropic": "^1.3.26",
+    "@langchain/core": "^0.3.0",
+    "@langchain/langgraph": "^0.2.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}

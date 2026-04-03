@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "build-extension",
+      "command": "source ~/.nvm/nvm.sh && npm run compile",
+      "problemMatcher": [
+        "$tsc"
+      ],
+      "group": "build",
+      "isBackground": false,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "type": "shell",
+      "label": "npm: watch",
+      "command": "source ~/.nvm/nvm.sh && npm run watch",
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "group": "build",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}
