@@ -2,7 +2,7 @@
   "name": "storypointinator",
   "displayName": "Storypointinator",
   "description": "AI-powered story point estimation in your VS Code sidebar",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "BrooksForsyth",
   "license": "ISC",
   "repository": {

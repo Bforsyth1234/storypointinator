@@ -80,6 +80,10 @@ export class ChatProvider implements vscode.WebviewViewProvider {
 
     webviewView.webview.onDidReceiveMessage(async (message) => {
       switch (message.type) {
+        case "ready": {
+          this._postStateUpdate();
+          break;
+        }
         case "userMessage": {
           // Pin the session ID so async work writes back to the correct session
           const targetSessionId = this._activeSessionId;

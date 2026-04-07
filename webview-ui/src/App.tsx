@@ -54,6 +54,8 @@ function App() {
 
   useEffect(() => {
     const cleanup = useVSCodeMessage(handleMessage);
+    // Ask the backend for the current state once mounted
+    postMessage({ type: "ready" });
     return cleanup;
   }, [handleMessage]);
 
